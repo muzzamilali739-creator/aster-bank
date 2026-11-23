@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1050" width="1600" height="1050" role="img" aria-labelledby="title desc">
+  <title id="title">Aster Bank transfer funds sequence diagram</title>
+  <desc id="desc">A customer submits transfer details and a PIN through the dashboard. The API loads the session and bank state. The Bank uses the AccountProxy to verify the actor and PIN before executing the Transfer command. An observer records alerts, and the API commits balances, transactions, audit and alerts in one atomic write. Then it logs the simulated delivery and returns a receipt.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 12 10" refX="11" refY="5" markerWidth="9" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1 11 5 1 9" fill="none" stroke="#54536a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="violet-arrow" viewBox="0 0 12 10" refX="11" refY="5" markerWidth="9" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1 11 5 1 9" fill="none" stroke="#5c43bb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="green-arrow" viewBox="0 0 12 10" refX="11" refY="5" markerWidth="9" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1 11 5 1 9" fill="none" stroke="#2a7464" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="1050" fill="#faf9ff"/>
+  <rect x="33" y="139" width="1534" height="838" rx="18" fill="#fff" stroke="#e4e1ee"/>
+  <rect x="34" y="402" width="1532" height="128" fill="#f8f5ff"/>
+  <rect x="34" y="642" width="1532" height="76" fill="#f2faf7"/>
+  <path d="M51 121 H1549" fill="none" stroke="#e4e1ee"/>
+  <g font-family="system-ui, sans-serif" fill="#25213a">
+    <text x="53" y="52" fill="#6345bc" font-size="16" font-weight="700" letter-spacing="2.9">ASTER BANK</text>
+    <text x="50" y="99" font-size="43" font-weight="750">Transfer funds</text>
+    <text x="1549" y="98" fill="#615b74" font-size="19" text-anchor="end">Sequence diagram</text>
+
+    <path d="M112 222V953" stroke="#c9c4d6" stroke-width="1.4" stroke-dasharray="5 6"/>
+    <rect x="33" y="156" width="158" height="65" rx="11" fill="#f3f1f9" stroke="#e0dceb"/>
+    <text x="112" y="183" text-anchor="middle" font-size="16" font-weight="700">Customer</text>
+    <text x="112" y="205" text-anchor="middle" font-size="13" fill="#655e77">actor</text>
+    <path d="M307 222V953" stroke="#c9c4d6" stroke-width="1.4" stroke-dasharray="5 6"/>
+    <rect x="228" y="156" width="158" height="65" rx="11" fill="#f3f1f9" stroke="#e0dceb"/>
+    <text x="307" y="183" text-anchor="middle" font-size="16" font-weight="700">Dashboard</text>
+    <text x="307" y="205" text-anchor="middle" font-size="13" fill="#655e77">browser</text>
+    <path d="M503 222V953" stroke="#c9c4d6" stroke-width="1.4" stroke-dasharray="5 6"/>
+    <rect x="424" y="156" width="158" height="65" rx="11" fill="#f3f1f9" stroke="#e0dceb"/>
+    <text x="503" y="183" text-anchor="middle" font-size="16" font-weight="700">Python API</text>
+    <text x="503" y="205" text-anchor="middle" font-size="13" fill="#655e77">server</text>
+    <path d="M699 222V953" stroke="#c9c4d6" stroke-width="1.4" stroke-dasharray="5 6"/>
+    <rect x="620" y="156" width="158" height="65" rx="11" fill="#f3f1f9" stroke="#e0dceb"/>
+    <text x="699" y="183" text-anchor="middle" font-size="16" font-weight="700">Bank</text>
+    <text x="699" y="205" text-anchor="middle" font-size="13" fill="#655e77">domain service</text>
+    <path d="M895 222V953" stroke="#c9c4d6" stroke-width="1.4" stroke-dasharray="5 6"/>
+    <rect x="816" y="156" width="158" height="65" rx="11" fill="#eee7ff" stroke="#e0dceb"/>
+    <text x="895" y="183" text-anchor="middle" font-size="16" font-weight="700">AccountProxy</text>
+    <text x="895" y="205" text-anchor="middle" font-size="13" fill="#655e77">protection</text>
+    <path d="M1091 222V953" stroke="#c9c4d6" stroke-width="1.4" stroke-dasharray="5 6"/>
+    <rect x="1012" y="156" width="158" height="65" rx="11" fill="#eee7ff" stroke="#e0dceb"/>
+    <text x="1091" y="183" text-anchor="middle" font-size="16" font-weight="700">Transfer</text>
+    <text x="1091" y="205" text-anchor="middle" font-size="13" fill="#655e77">command</text>
+    <path d="M1287 222V953" stroke="#c9c4d6" stroke-width="1.4" stroke-dasharray="5 6"/>
+    <rect x="1208" y="156" width="158" height="65" rx="11" fill="#f3f1f9" stroke="#e0dceb"/>
+    <text x="1287" y="183" text-anchor="middle" font-size="16" font-weight="700">SQLite ledger</text>
+    <text x="1287" y="205" text-anchor="middle" font-size="13" fill="#655e77">persistent state</text>
+    <path d="M1483 222V953" stroke="#c9c4d6" stroke-width="1.4" stroke-dasharray="5 6"/>
+    <rect x="1404" y="156" width="158" height="65" rx="11" fill="#e8f6f0" stroke="#e0dceb"/>
+    <text x="1483" y="183" text-anchor="middle" font-size="16" font-weight="700">Observer</text>
+    <text x="1483" y="205" text-anchor="middle" font-size="13" fill="#655e77">publisher subscribers</text>
+    <path d="M112 260 H307" fill="none" stroke="#54536a" stroke-width="1.6" marker-end="url(#arrow)"/>
+    <rect x="117.0" y="232" width="185.0" height="24" rx="3" fill="#fff"/>
+    <text x="209.5" y="249" font-size="14" text-anchor="middle" fill="#54536a">Enter details and PIN</text>
+    <path d="M307 298 H503" fill="none" stroke="#54536a" stroke-width="1.6" marker-end="url(#arrow)"/>
+    <rect x="330.8" y="270" width="148.4" height="24" rx="3" fill="#fff"/>
+    <text x="405.0" y="287" font-size="14" text-anchor="middle" fill="#54536a">POST /api/action</text>
+    <path d="M503 336 H1287" fill="none" stroke="#54536a" stroke-width="1.6" marker-end="url(#arrow)"/>
+    <rect x="774.6" y="308" width="240.8" height="24" rx="3" fill="#fff"/>
+    <text x="895.0" y="325" font-size="15" text-anchor="middle" fill="#54536a">Begin SQLite transaction and load sandbox</text>
+    <path d="M1287 374 H503" fill="none" stroke="#54536a" stroke-width="1.35" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+    <rect x="833.4" y="346" width="123.2" height="24" rx="3" fill="#fff"/>
+    <text x="895.0" y="363" font-size="15" text-anchor="middle" fill="#54536a">Sandbox state</text>
+    <path d="M503 412 H699" fill="none" stroke="#54536a" stroke-width="1.6" marker-end="url(#arrow)"/>
+    <rect x="508.0" y="384" width="186.0" height="24" rx="3" fill="#f8f5ff"/>
+    <text x="601.0" y="401" font-size="14" text-anchor="middle" fill="#54536a">perform(user_id, body)</text>
+    <path d="M699 449 H895" fill="none" stroke="#5c43bb" stroke-width="1.6" marker-end="url(#violet-arrow)"/>
+    <rect x="704.0" y="421" width="186.0" height="24" rx="3" fill="#f8f5ff"/>
+    <text x="797.0" y="438" font-size="14" text-anchor="middle" fill="#5c43bb">Guard transfer operation</text>
+    <path d="M895 474 h150 v20 H895" fill="none" stroke="#5c43bb" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#violet-arrow)"/>
+    <text x="905" y="467" font-size="14" fill="#5c43bb">Check role, owner and PIN</text>
+    <path d="M895 524 H699" fill="none" stroke="#5c43bb" stroke-width="1.6" marker-end="url(#violet-arrow)"/>
+    <rect x="704.0" y="496" width="186.0" height="24" rx="3" fill="#f8f5ff"/>
+    <text x="797.0" y="513" font-size="14" text-anchor="middle" fill="#5c43bb">Run authorized callback</text>
+    <path d="M699 566 H1091" fill="none" stroke="#5c43bb" stroke-width="1.6" marker-end="url(#violet-arrow)"/>
+    <rect x="850.2" y="538" width="89.6" height="24" rx="3" fill="#fff"/>
+    <text x="895.0" y="555" font-size="15" text-anchor="middle" fill="#5c43bb">execute()</text>
+    <path d="M1091 596 h158 v20 H1091" fill="none" stroke="#5c43bb" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#violet-arrow)"/>
+    <text x="1101" y="589" font-size="14" fill="#5c43bb">Validate, debit and credit</text>
+    <path d="M1091 642 H699" fill="none" stroke="#54536a" stroke-width="1.35" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+    <rect x="795.6" y="614" width="198.8" height="24" rx="3" fill="#fff"/>
+    <text x="895.0" y="631" font-size="15" text-anchor="middle" fill="#54536a">Return ledger movement</text>
+    <path d="M699 680 H1483" fill="none" stroke="#2a7464" stroke-width="1.6" marker-end="url(#green-arrow)"/>
+    <rect x="861.4" y="652" width="459.2" height="24" rx="3" fill="#f2faf7"/>
+    <text x="1091.0" y="669" font-size="15" text-anchor="middle" fill="#2a7464">Publish transaction and applicable low-balance events</text>
+    <path d="M1483 716 H699" fill="none" stroke="#2a7464" stroke-width="1.35" stroke-dasharray="6 5" marker-end="url(#green-arrow)"/>
+    <rect x="907.6" y="688" width="366.8" height="24" rx="3" fill="#f2faf7"/>
+    <text x="1091.0" y="705" font-size="15" text-anchor="middle" fill="#2a7464">Record alerts and queue simulated delivery</text>
+    <path d="M699 754 H503" fill="none" stroke="#54536a" stroke-width="1.35" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+    <rect x="518.4" y="726" width="165.2" height="24" rx="3" fill="#fff"/>
+    <text x="601.0" y="743" font-size="14" text-anchor="middle" fill="#54536a">Return transaction</text>
+    <path d="M503 792 H1287" fill="none" stroke="#54536a" stroke-width="1.6" marker-end="url(#arrow)"/>
+    <rect x="665.4" y="764" width="459.2" height="24" rx="3" fill="#fff"/>
+    <text x="895.0" y="781" font-size="15" text-anchor="middle" fill="#54536a">Commit balances, ledger, audit, and alerts in SQLite</text>
+    <path d="M1287 828 H503" fill="none" stroke="#54536a" stroke-width="1.35" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+    <rect x="820.8" y="800" width="148.4" height="24" rx="3" fill="#fff"/>
+    <text x="895.0" y="817" font-size="15" text-anchor="middle" fill="#54536a">Commit confirmed</text>
+    <path d="M503 859 h147 v20 H503" fill="none" stroke="#54536a" stroke-width="1.6" stroke-linejoin="round" marker-end="url(#arrow)"/>
+    <text x="513" y="852" font-size="14" fill="#54536a">Log simulated SMS/email</text>
+    <path d="M503 912 H307" fill="none" stroke="#54536a" stroke-width="1.35" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+    <rect x="312.0" y="884" width="186.0" height="24" rx="3" fill="#fff"/>
+    <text x="405.0" y="901" font-size="14" text-anchor="middle" fill="#54536a">Return receipt and state</text>
+    <path d="M307 950 H112" fill="none" stroke="#54536a" stroke-width="1.35" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+    <rect x="118.5" y="922" width="182.0" height="24" rx="3" fill="#fff"/>
+    <text x="209.5" y="939" font-size="14" text-anchor="middle" fill="#54536a">Show success receipt</text>
+    <rect x="34" y="993" width="1532" height="38" rx="10" fill="#f0ecfb"/>
+    <text x="52" y="1018" font-size="15" fill="#4c3f77">
+      <tspan font-weight="700">Rejected authorization</tspan>
+      <tspan dx="5">The API returns an error before the command executes.</tspan>
+    </text>
+  </g>
+</svg>

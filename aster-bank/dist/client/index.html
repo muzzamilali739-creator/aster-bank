@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7fb">
+  <meta name="description" content="Manage simulated accounts, explore transactions, and run an end-to-end banking demo.">
+  <title>Aster Bank</title>
+  <link rel="icon" href="/aster.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.mjs"></script>
+</head>
+<body>
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="aster" viewBox="0 0 32 32"><path fill="currentColor" d="M16 2.3c1.9 0 3.4 1.5 3.4 3.4v4.6l3.3-3.3a3.4 3.4 0 0 1 4.8 4.8l-3.3 3.3h4.6a3.4 3.4 0 0 1 0 6.8h-4.6l3.3 3.3a3.4 3.4 0 0 1-4.8 4.8l-6.7-6.7-6.7 6.7a3.4 3.4 0 0 1-4.8-4.8l3.3-3.3H3.2a3.4 3.4 0 0 1 0-6.8h4.6l-3.3-3.3a3.4 3.4 0 0 1 4.8-4.8l3.3 3.3V5.7c0-1.9 1.5-3.4 3.4-3.4Z" transform="translate(2 1) scale(.875)"/></symbol>
+    <symbol id="nav-overview" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.4"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.4"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.4"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.4"/></symbol>
+    <symbol id="nav-accounts" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.6"/><path d="M3 10h18M7 15h4"/></symbol>
+    <symbol id="nav-activity" viewBox="0 0 24 24"><path d="M3.5 8.5h16.8m-4-4 4 4-4 4m4.2 3H3.7m4-4-4 4 4 4"/></symbol>
+    <symbol id="nav-statements" viewBox="0 0 24 24"><path d="M14 3.3H6.5a2 2 0 0 0-2 2v13.4a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-10L14 3.3Z"/><path d="M14 3.5v5.3h5.2M8 12.9h8m-8 3.5h6"/></symbol>
+    <symbol id="nav-bell" viewBox="0 0 24 24"><path d="M18.2 8.8a6.2 6.2 0 0 0-12.4 0c0 6-2.3 6.5-2.3 8.2h17c0-1.7-2.3-2.2-2.3-8.2ZM9.9 20a2.4 2.4 0 0 0 4.2 0"/></symbol>
+    <symbol id="nav-demo" viewBox="0 0 24 24"><path d="M9 3h6m-5 0v6.4l-5 7.5a2.5 2.5 0 0 0 2.1 3.9h9.8a2.5 2.5 0 0 0 2.1-3.9l-5-7.5V3M7.5 14h9"/></symbol>
+    <symbol id="nav-admin" viewBox="0 0 24 24"><path d="M12 3.5 20 7v4.6c0 4.5-3.8 7.8-8 9.2-4.2-1.4-8-4.7-8-9.2V7l8-3.5Z"/><path d="m9 12 2.1 2.2 3.9-4"/></symbol>
+    <symbol id="chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  </svg>
+  <div id="app-shell" hidden>
+    <aside class="sidebar" aria-label="Bank navigation">
+      <button class="brand" type="button" data-view="overview" aria-label="Aster Bank overview">
+        <span class="brand-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#aster"/></svg></span>
+        <span class="brand-wordmark">aster<span>.</span><small> BANK</small></span>
+      </button>
+      <nav class="sidebar-nav" aria-label="Main">
+        <p class="nav-caption">WORKSPACE</p>
+        <button class="nav-item is-active" data-view="overview" type="button" aria-label="Overview" aria-current="page"><svg aria-hidden="true"><use href="#nav-overview"/></svg><span>Overview</span></button>
+        <button class="nav-item" data-view="accounts" type="button" aria-label="Accounts"><svg aria-hidden="true"><use href="#nav-accounts"/></svg><span>Accounts</span></button>
+        <button class="nav-item" data-view="activity" type="button" aria-label="Activity"><svg aria-hidden="true"><use href="#nav-activity"/></svg><span>Activity</span></button>
+        <button class="nav-item" data-view="statements" type="button" aria-label="Statements"><svg aria-hidden="true"><use href="#nav-statements"/></svg><span>Statements</span></button>
+        <button class="nav-item" data-view="notifications" type="button" aria-label="Notifications"><svg aria-hidden="true"><use href="#nav-bell"/></svg><span>Notifications</span><span id="nav-notification-count" class="nav-count" hidden></span></button>
+        <p class="nav-caption nav-caption-secondary">PROJECT</p>
+        <button class="nav-item" data-view="demo" type="button" aria-label="Demo Lab"><svg aria-hidden="true"><use href="#nav-demo"/></svg><span>Demo Lab</span></button>
+        <button class="nav-item" id="sidebar-admin" data-view="admin" type="button" aria-label="Administration" hidden><svg aria-hidden="true"><use href="#nav-admin"/></svg><span>Administration</span></button>
+      </nav>
+      <div class="sandbox-note"><span class="sandbox-icon"><svg aria-hidden="true"><use href="#nav-admin"/></svg></span><div><strong>Banking sandbox</strong><small>Simulated funds</small></div></div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar">
+        <span id="header-view-name" class="topbar-title">Overview</span>
+        <div class="topbar-actions">
+          <button type="button" class="header-icon" id="header-bell" aria-label="Open notifications"><svg aria-hidden="true"><use href="#nav-bell"/></svg><span class="header-dot" id="header-notification-dot" hidden></span></button>
+          <span class="header-divider" aria-hidden="true"></span>
+          <button type="button" class="profile-button" id="profile-button" aria-label="Open profile menu"><span id="profile-copy"></span><svg class="profile-chevron" aria-hidden="true"><use href="#chevron"/></svg></button>
+        </div>
+      </header>
+      <main id="view" class="main-view" tabindex="-1"></main>
+    </div>
+  </div>
+  <main id="auth-view" class="auth-view"><div class="starting-view"><span class="brand-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#aster"/></svg></span><p role="status">Opening Aster Bank…</p></div></main>
+  <dialog id="bank-dialog" class="bank-dialog" aria-labelledby="dialog-title"></dialog>
+  <div id="toasts" class="toasts" aria-live="polite" aria-atomic="false"></div>
+  <noscript><p class="noscript">Aster Bank requires JavaScript to run its banking workspace.</p></noscript>
+</body>
+</html>
